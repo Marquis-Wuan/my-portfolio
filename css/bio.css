@@ -1,4 +1,7 @@
-/* DASAR & TEMA */
+/* BIO-LINK PROFESSIONAL CSS v2.1 
+   Optimized for Marquis Wu'an Portfolio
+*/
+
 :root {
     --glass-white: rgba(255, 255, 255, 0.5);
     --glass-border: rgba(255, 255, 255, 0.3);
@@ -9,7 +12,7 @@
 
 * {
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent; /* Hapus bayangan biru saat tap di HP */
 }
 
 body {
@@ -22,9 +25,11 @@ body {
     min-height: 100vh;
 }
 
+/* --- RESET & GLOBAL --- */
 a { 
     text-decoration: none; 
-    color: inherit; 
+    color: inherit;
+    outline: none;
 }
 
 .container {
@@ -33,7 +38,7 @@ a {
     padding: 60px 0;
 }
 
-/* HEADER */
+/* --- HEADER PROFILE --- */
 .profile-card {
     text-align: center;
     margin-bottom: 40px;
@@ -64,7 +69,7 @@ a {
 h1 { font-size: 1.5rem; margin: 15px 0 5px; font-weight: 700; }
 .subtitle { font-size: 0.85rem; color: var(--text-muted); }
 
-/* MAIN BUTTON (KALKULATOR) */
+/* --- MAIN BUTTON (KALKULATOR) --- */
 .glass-btn {
     background: var(--glass-white);
     backdrop-filter: blur(15px);
@@ -83,16 +88,15 @@ h1 { font-size: 1.5rem; margin: 15px 0 5px; font-weight: 700; }
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-.btn-icon { font-size: 1.8rem; margin-right: 18px; }
-.btn-icon img {
-  width: 50px;
-}
+.btn-icon { font-size: 1.8rem; margin-right: 18px; display: flex; align-items: center; }
+.btn-icon img { width: 45px; height: auto; }
+
 .btn-text { flex-grow: 1; text-align: left; }
 .btn-text .title { display: block; font-weight: 600; font-size: 1.05rem; }
 .btn-text .desc { font-size: 0.75rem; color: var(--text-muted); }
 .chevron { opacity: 0.2; font-weight: bold; }
 
-/* SOCIAL LIST (1 BARIS - 1 BARIS) */
+/* --- SOCIAL SECTION LABEL --- */
 .social-section { margin-top: 20px; }
 
 .section-label {
@@ -123,41 +127,30 @@ h1 { font-size: 1.5rem; margin: 15px 0 5px; font-weight: 700; }
 .arrow-indicator { font-size: 0.6rem; opacity: 0.4; margin-left: 10px; transition: 0.3s; }
 details[open] .arrow-indicator { transform: rotate(180deg); }
 
-.social-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-top: 10px; /* Kasih jarak dikit pas terbuka */
-}
-
-/* Container utama untuk animasi slide */
+/* --- ANIMASI SLIDE (JS SUPPORTED) --- */
 .details-content {
     display: grid;
-    grid-template-rows: 0fr; /* Default: tinggi 0 */
-    transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease;
+    grid-template-rows: 0fr; 
+    transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease-out;
     opacity: 0;
     overflow: hidden;
 }
 
-/* Saat details terbuka, ganti ukurannya jadi 1fr (penuh) */
-details[open] + .details-content, /* Jika pakai JS nanti ini targetnya */
+.details-content > div {
+    min-height: 0;
+}
+
 details[open] .details-content {
     grid-template-rows: 1fr;
     opacity: 1;
 }
 
-/* Supaya konten di dalamnya tetap rapi selama transisi */
-.details-content > div {
-    min-height: 0;
-}
-
-/* Putaran panah yang lebih smooth */
-details summary {
-    transition: margin 0.3s ease;
-}
-
-details[open] summary {
-    margin-bottom: 5px;
+/* --- SOCIAL LIST ROWS --- */
+.social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 10px;
 }
 
 .social-row {
@@ -167,18 +160,21 @@ details[open] summary {
     padding: 14px 18px;
     display: flex;
     align-items: center;
-    transition: 0.3s;
+    transition: 0.3s ease;
+    width: 100%;
 }
 
-.social-row:hover {
+.social-row:hover, .social-row:active {
     background: #fff;
-    transform: translateX(5px); /* Geser dikit ke kanan pas di hover */
+    transform: translateX(5px);
     border-color: var(--primary-color);
+    outline: none; /* Fix buat garis biru Chrome */
 }
 
 .icon-box {
     width: 40px;
     height: 40px;
+    min-width: 40px; /* Anti gepeng */
     background: #fff;
     border-radius: 12px;
     display: flex;
@@ -190,8 +186,21 @@ details[open] summary {
 
 .icon-box img { width: 24px; height: 24px; object-fit: contain; }
 
-.social-info { flex-grow: 1; text-align: left; }
-.user-id { display: block; font-size: 0.95rem; font-weight: 600; }
+.social-info {
+    flex-grow: 1;
+    text-align: left;
+    min-width: 0; /* Penting buat ellipsis */
+}
+
+.user-id {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Email panjang jadi titik-titik */
+}
+
 .app-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
 
 .action-hint {
@@ -201,65 +210,16 @@ details[open] summary {
     background: rgba(0, 122, 255, 0.1);
     padding: 4px 10px;
     border-radius: 8px;
-    opacity: 0; /* Sembunyikan dulu */
-    transition: 0.9s;
+    opacity: 0;
+    transition: 0.3s;
 }
 
 .social-row:hover .action-hint { opacity: 1; }
 
+/* --- FOOTER --- */
 footer {
     margin-top: 50px;
     text-align: center;
     font-size: 0.75rem;
     opacity: 0.4;
-}
-
-.icon-box {
-    width: 40px;
-    height: 40px;
-    min-width: 40px; /* KUNCI UTAMA: Agar icon tidak bisa menyusut/gepeng */
-    background: #fff;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 16px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
-
-.social-info {
-    flex-grow: 1;
-    text-align: left;
-    min-width: 0; /* KUNCI KEDUA: Agar pembungkus teks tahu batasnya */
-}
-
-.user-id {
-    display: block;
-    font-size: 0.95rem;
-    font-weight: 600;
-    
-    /* TRICK POTONG TEKS OTOMATIS */
-    white-space: nowrap;      /* Teks dilarang turun ke bawah */
-    overflow: hidden;         /* Sembunyikan teks yang lewat batas */
-    text-overflow: ellipsis;  /* Tambahkan titik-titik (...) di ujung */
-}
-
-/* Container Utama Animasi */
-.details-content {
-    display: grid;
-    grid-template-rows: 0fr; /* Default tertutup */
-    transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease-out;
-    opacity: 0;
-    overflow: hidden;
-}
-
-/* Penting agar konten di dalamnya punya ruang untuk dihitung tingginya */
-.details-content > div {
-    min-height: 0;
-}
-
-/* Saat atribut open ada (dipasang oleh JS), animasikan ke bawah */
-details[open] .details-content {
-    grid-template-rows: 1fr;
-    opacity: 1;
 }
