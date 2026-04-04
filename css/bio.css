@@ -1,0 +1,265 @@
+/* DASAR & TEMA */
+:root {
+    --glass-white: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --primary-color: #007aff;
+    --text-dark: #1d1d1f;
+    --text-muted: #86868b;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: linear-gradient(160deg, #f0f2f5 0%, #d9e2ec 100%);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+a { 
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.container {
+    width: 90%;
+    max-width: 450px;
+    padding: 60px 0;
+}
+
+/* HEADER */
+.profile-card {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.avatar-glow {
+    position: relative;
+    display: inline-block;
+}
+
+.avatar-glow::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 25px rgba(0, 122, 255, 0.2);
+    z-index: -1;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    object-fit: cover;
+}
+
+h1 { font-size: 1.5rem; margin: 15px 0 5px; font-weight: 700; }
+.subtitle { font-size: 0.85rem; color: var(--text-muted); }
+
+/* MAIN BUTTON (KALKULATOR) */
+.glass-btn {
+    background: var(--glass-white);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.btn-icon { font-size: 1.8rem; margin-right: 18px; }
+.btn-icon img {
+  width: 50px;
+}
+.btn-text { flex-grow: 1; text-align: left; }
+.btn-text .title { display: block; font-weight: 600; font-size: 1.05rem; }
+.btn-text .desc { font-size: 0.75rem; color: var(--text-muted); }
+.chevron { opacity: 0.2; font-weight: bold; }
+
+/* SOCIAL LIST (1 BARIS - 1 BARIS) */
+.social-section { margin-top: 20px; }
+
+.section-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.section-label::-webkit-details-marker { display: none; }
+
+.section-label span {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+.section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin-left: 15px;
+}
+
+.arrow-indicator { font-size: 0.6rem; opacity: 0.4; margin-left: 10px; transition: 0.3s; }
+details[open] .arrow-indicator { transform: rotate(180deg); }
+
+.social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 10px; /* Kasih jarak dikit pas terbuka */
+}
+
+/* Container utama untuk animasi slide */
+.details-content {
+    display: grid;
+    grid-template-rows: 0fr; /* Default: tinggi 0 */
+    transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease;
+    opacity: 0;
+    overflow: hidden;
+}
+
+/* Saat details terbuka, ganti ukurannya jadi 1fr (penuh) */
+details[open] + .details-content, /* Jika pakai JS nanti ini targetnya */
+details[open] .details-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+/* Supaya konten di dalamnya tetap rapi selama transisi */
+.details-content > div {
+    min-height: 0;
+}
+
+/* Putaran panah yang lebih smooth */
+details summary {
+    transition: margin 0.3s ease;
+}
+
+details[open] summary {
+    margin-bottom: 5px;
+}
+
+.social-row {
+    background: var(--glass-white);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.social-row:hover {
+    background: #fff;
+    transform: translateX(5px); /* Geser dikit ke kanan pas di hover */
+    border-color: var(--primary-color);
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.icon-box img { width: 24px; height: 24px; object-fit: contain; }
+
+.social-info { flex-grow: 1; text-align: left; }
+.user-id { display: block; font-size: 0.95rem; font-weight: 600; }
+.app-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+
+.action-hint {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    background: rgba(0, 122, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 8px;
+    opacity: 0; /* Sembunyikan dulu */
+    transition: 0.9s;
+}
+
+.social-row:hover .action-hint { opacity: 1; }
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 0.75rem;
+    opacity: 0.4;
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    min-width: 40px; /* KUNCI UTAMA: Agar icon tidak bisa menyusut/gepeng */
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.social-info {
+    flex-grow: 1;
+    text-align: left;
+    min-width: 0; /* KUNCI KEDUA: Agar pembungkus teks tahu batasnya */
+}
+
+.user-id {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    
+    /* TRICK POTONG TEKS OTOMATIS */
+    white-space: nowrap;      /* Teks dilarang turun ke bawah */
+    overflow: hidden;         /* Sembunyikan teks yang lewat batas */
+    text-overflow: ellipsis;  /* Tambahkan titik-titik (...) di ujung */
+}
+
+/* Container Utama Animasi */
+.details-content {
+    display: grid;
+    grid-template-rows: 0fr; /* Default tertutup */
+    transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease-out;
+    opacity: 0;
+    overflow: hidden;
+}
+
+/* Penting agar konten di dalamnya punya ruang untuk dihitung tingginya */
+.details-content > div {
+    min-height: 0;
+}
+
+/* Saat atribut open ada (dipasang oleh JS), animasikan ke bawah */
+details[open] .details-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
