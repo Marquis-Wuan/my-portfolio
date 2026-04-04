@@ -219,3 +219,11 @@ footer {
     color: var(--text-muted);
     opacity: 0.6;
 }
+
+/* Anti Long-Press / Save Image Menu */
+img {
+    -webkit-user-select: none;  /* Safari/Chrome Android */
+    -webkit-touch-callout: none; /* iOS Safari - Mematikan menu pop-up */
+    user-select: none;           /* Standard */
+    pointer-events: none;        /* KUNCI UTAMA: Gambar tidak bisa disentuh sama sekali */
+}
