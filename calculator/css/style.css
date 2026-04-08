@@ -118,3 +118,32 @@ p {
     border-bottom: 1px solid #eee;
     padding: 5px 0;
 }
+
+.download-apk {
+   opacity: 69%;
+}
+
+.download-apk a {
+   padding: 10px 16.5px;
+    margin: 5px;
+    border: none;
+    border-radius: 190px;
+    background-color: #74b615;
+    color: white;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    transition: 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    position: fixed;
+   top: 7px;
+   right: 10px;
+   z-index: 999;
+   animation: 0.9s;
+}
+
+.download-apk a:active {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  background-color: #4a740e;
+}
