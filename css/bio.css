@@ -220,6 +220,16 @@ footer {
     opacity: 0.6;
 }
 
+footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+footer a span {
+  color: #0000FF;
+  text-decoration: none;
+}
+
 /* Anti Long-Press / Save Image Menu */
 img {
     -webkit-user-select: none;  /* Safari/Chrome Android */
