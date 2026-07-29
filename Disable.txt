@@ -1,0 +1,12 @@
+<!-- Dis -->
+    <section class="main-content">
+        <a href="calculator/index.html" class="glass-btn">
+            <div class="btn-icon"><img src="Icons/calculator.png" draggable="false"></div>
+            <div class="btn-text">
+                <span class="title">Project Calculator</span>
+                <span class="desc">Interactive Tool With Dark Mode</span>
+            </div>
+            <div class="chevron">→</div>
+        </a>
+    </section>
+<!-- Dis -->
